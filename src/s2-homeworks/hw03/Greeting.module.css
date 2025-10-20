@@ -1,7 +1,12 @@
 .greetingForm {
+    font-family: Montserrat, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
 }
 
 .inputAndButtonContainer {
+    display: flex;
+    width: 100%;
 }
 
 .error {
@@ -9,6 +14,12 @@
 }
 
 .input {
+    width: 372px;
+    height: 36px;
+    margin-right: 13px;
+    padding: 8px 12px;
+    border: 1px solid #D1D1D1;
+    margin-bottom: 10px;
 }
 
 .input:focus {
@@ -19,6 +30,12 @@
 }
 
 .button {
+    display: inline-block;
+    height: 36px;
+    color: #FFFFFF;
+    background-color: #0066CC;
+    text-transform: capitalize;
+    padding: 8px 24px;
 }
 
 .button:focus {
@@ -31,6 +48,8 @@
 }
 
 .text {
+    color: #00000080;
+    margin-bottom: 10px;
 }
 
 .greeting {
