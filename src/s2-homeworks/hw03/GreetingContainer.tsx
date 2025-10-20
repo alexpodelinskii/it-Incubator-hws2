@@ -4,7 +4,7 @@ import {UserType} from './HW3'
 
 type GreetingContainerPropsType = {
     users: UserType[] // need to fix any
-    addUserCallback: string // need to fix any
+    addUserCallback: (newName: string) => void // need to fix any
 }
 
 export const pureAddUser = (name: string, setError: (error: string) => void, setName: (newName: string) => void, addUserCallback: (newName: string) => void) => {
@@ -25,7 +25,10 @@ export const pureOnBlur = (name: string, setError: (error: string) => void) => {
     }
 }
 
-export const pureOnEnter = (e: any, addUser: any) => { // если нажата кнопка Enter - добавить
+export const pureOnEnter = (e: KeyboardEvent, addUser: () => void) => { // если нажата кнопка Enter - добавить
+    if (e.key === 'Enter') {
+        addUser();
+    }
 }
 
 // более простой и понятный для новичков
@@ -37,11 +40,11 @@ const GreetingContainer: React.FC<GreetingContainerPropsType> = ({
                                                                      addUserCallback,
                                                                  }) => {
     // деструктуризация пропсов
-    const [name, setName] = useState<any>('') // need to fix any
-    const [error, setError] = useState<any>('') // need to fix any
+    const [name, setName] = useState<string>('') // need to fix any
+    const [error, setError] = useState<string>('') // need to fix any
 
-    const setNameCallback = (e: any) => { // need to fix any
-        setName('some name') // need to fix
+    const setNameCallback = (e: ChangeEvent<HTMLInputElement>) => { // need to fix any
+        setName(e.currentTarget.value) // need to fix
 
         error && setError('')
     }
@@ -53,7 +56,7 @@ const GreetingContainer: React.FC<GreetingContainerPropsType> = ({
         pureOnBlur(name, setError)
     }
 
-    const onEnter = (e: any) => {
+    const onEnter = (e: KeyboardEvent) => {
         pureOnEnter(e, addUser)
     }
 
